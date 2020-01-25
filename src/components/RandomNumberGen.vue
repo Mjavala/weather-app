@@ -1,9 +1,7 @@
 <template>
     <div id="coordinates-wrap">
         <WeatherData 
-            :lat=lat 
-            :long=long 
-            :getCoordEvent=getCoordEvent
+            v-bind="latLong"
         />
         <v-btn 
             rounded 
@@ -18,7 +16,7 @@
         <v-btn class="submitButton"
             rounded 
             small 
-            @click="clickBoolAndGetCoordinatesWrapper()">
+            @click="getCoordinates()">
             Submit
         </v-btn>
     </div>  
@@ -33,10 +31,13 @@ export default {
             info: [],
             xCoordinate: [],
             yCoordinate: [], // [-PI;PI]
-            lat: [],
-            long: [],
             requestCount: null,     //60req/min threshold
-            getCoordEvent: false,
+            latLong: {
+                lat: [],
+                long: [],
+            }
+            
+
         }
     },
     components: {
@@ -44,7 +45,7 @@ export default {
     },
     methods: {
         getCoordinates() {
-            var self = this     //set context
+            let self = this     //set context
             const coordinatesGen = self.requestCount * 2
             self.resetData()
             this.$http
@@ -60,7 +61,7 @@ export default {
             return (360 * arg / (2 * Math.PI))
         },
         decimaltoCoordinates(){
-            var mid = Math.ceil(this.info.length/2)
+            const mid = Math.ceil(this.info.length/2)
                     
             this.xCoordinate = this.info.slice(0, mid)
             
@@ -70,25 +71,21 @@ export default {
 
             this.xCoordinate.forEach(coordinate => {
                 const currentLong = this.rad2deg(coordinate * 2 * Math.PI - Math.PI).toFixed(3)
-                this.long.push(currentLong)
+                this.latLong.long.push(currentLong)
             })
 
             this.yCoordinate.forEach(coordinate => {
-                var currentLat = this.rad2deg(Math.PI/2 - Math.acos(coordinate * 2 - 1)).toFixed(3)
-                this.lat.push(currentLat)
+                const currentLat = this.rad2deg(Math.PI/2 - Math.acos(coordinate * 2 - 1)).toFixed(3)
+                this.latLong.lat.push(currentLat)
             })
         },
         resetData(){        //reset coordinate arrays w each user submit
             this.info = []      
             this.xCoordinate = []
             this.yCoordinate = []
-            this.lat = []
-            this.long = []
+            this.latLong.lat = []
+            this.latLong.long = []
         },
-        clickBoolAndGetCoordinatesWrapper(){
-            this.getCoordinates()
-            this.getCoordEvent = !this.getCoordEvent
-        }
     },
 }
 </script>

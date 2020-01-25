@@ -1,7 +1,7 @@
 <template>
     <div id="weather-wrap">
         <mapUI 
-           :info="info"
+           v-bind="weatherInfo"
         />
     </div>  
 </template>
@@ -17,11 +17,12 @@ export default {
     props: [
         'lat', 
         'long', 
-        'getCoordEvent'
     ],
     data () {
         return {
-            info: [],
+            weatherInfo: {
+                info: [],
+            },
             count: null,
             urls: [],
         }
@@ -41,7 +42,7 @@ export default {
             }
             // GET requests to OpenWeather API 
             this.$http.all(this.urls.map(l => this.$http.get(l)))
-                .then(this.$http.spread((...res) => (this.info = res)))
+                .then(this.$http.spread((...res) => (this.weatherInfo.info = res)))
                 .catch(error => console.log(error))
             //Reset urls array
             this.urls = []

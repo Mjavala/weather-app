@@ -13,7 +13,6 @@
         :lat-lng="latLng(item.data.coord.lat, item.data.coord.lon)"
       >
         <l-popup>
-        <!-- only renders 1st item for all popups? !-->
         {{ item.data.weather}}
         </l-popup>
       </l-marker>
