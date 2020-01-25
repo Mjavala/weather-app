@@ -48,6 +48,7 @@ export default {
             let self = this     //set context
             const coordinatesGen = self.requestCount * 2
             self.resetData()
+            // TODO: Try Except error handling
             this.$http
                 .get(`https://www.random.org//decimal-fractions/?num=${coordinatesGen}&dec=10&col=1&format=plain&rnd=new`)
                 .then(response => {

@@ -34,19 +34,6 @@ export default {
         },
     },
     methods: {
-        getWeather() {
-            const coordCount = this.lat.length
-            //lat/long pair check
-            if(coordCount != this.long.length){
-                console.log("There are an uneven number of longitude and latitude coordinates")
-            }
-            // GET requests to OpenWeather API 
-            this.$http.all(this.urls.map(l => this.$http.get(l)))
-                .then(this.$http.spread((...res) => (this.weatherInfo.info = res)))
-                .catch(error => console.log(error))
-            //Reset urls array
-            this.urls = []
-        },
         buildGetURLs(){
             let i
             const coordCount = this.lat.length
@@ -56,7 +43,21 @@ export default {
                 this.urls.push(url)
 
             }
+        },
+        getWeather() {
+            const coordCount = this.lat.length
+            //lat/long pair check
+            if(coordCount != this.long.length){
+                console.log("There are an uneven number of longitude and latitude coordinates")
+            }
+            // req OpenWeather API 
+            // TODO: Try Except error handling
 
+            this.$http.all(this.urls.map(l => this.$http.get(l)))
+                .then(this.$http.spread((...res) => (this.weatherInfo.info = res)))
+                .catch(error => console.log(error))
+            //Reset urls array
+            this.urls = []
         }
     },
 }

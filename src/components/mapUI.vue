@@ -13,7 +13,15 @@
         :lat-lng="latLng(item.data.coord.lat, item.data.coord.lon)"
       >
         <l-popup>
-        {{ item.data.weather}}
+          <div>
+            {{ item.data.weather[0].main }}
+          </div>
+          <div>
+            {{ item.data.weather[0].description }}
+          </div>
+          <div>
+            {{ item.data.main.temp}} °K
+          </div>
         </l-popup>
       </l-marker>
     </l-map>
@@ -44,12 +52,13 @@ export default {
         url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       },
-      weatherDesc: [],
+      weatherDesc: []
     }
   },
   watch: {
     info(newVal){
       this.weatherDesc = newVal
+      console.log(this.weatherDesc)
     }
   },
   methods: {
