@@ -13,38 +13,34 @@
         :lat-lng="latLng(item.data.coord.lat, item.data.coord.lon)"
       >
         <l-popup>
-          <div class="main-desc d-inline-flex">
+          <div class="main-desc d-inline-flex justify-space-around align-center">
             <v-icon 
               color="blue"
-              small
               v-if="item.data.weather[0].main === 'Rain'">
                 mdi-weather-pouring
               </v-icon>
               <v-icon 
               color="grey"
-              small
               v-if="item.data.weather[0].main === 'Clouds'">
                 mdi-weather-cloudy
               </v-icon>
               <v-icon 
               color="yellow"
-              small
               v-if="item.data.weather[0].main === 'Clear'">
                 mdi-weather-sunny
               </v-icon>
               <v-icon 
               color="white"
-              small
               v-if="item.data.weather[0].main === 'Snow'">
                 mdi-weather-snowy
               </v-icon>
-            <div class="mx-1 white--text">
+               <div class="white--text mx-3">
+                {{ item.data.weather[0].description }}
+              </div>
+          </div>
+          <div class="mx-1 white--text d-flex justify-center">
                 {{ item.data.main.temp}} °K
             </div>
-          </div>
-          <div class="white--text">
-            {{ item.data.weather[0].description }}
-          </div>
         </l-popup>
       </l-marker>
     </l-map>
