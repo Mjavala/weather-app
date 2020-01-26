@@ -3,22 +3,24 @@
         <WeatherData 
             v-bind="latLong"
         />
-        <v-btn 
-            rounded 
-            medium 
-            class="randCount"
-        >
-            <v-text-field
-                label="number of points"
-                v-model="requestCount">
-            </v-text-field>
-        </v-btn>
-        <v-btn class="submitButton"
-            rounded 
-            small 
-            @click="getCoordinates()">
-            Submit
-        </v-btn>
+        <div class="input-wrap">
+            <v-btn 
+                rounded 
+                medium 
+                class="randCount"
+            >
+                <v-text-field
+                    label="number of points"
+                    v-model="requestCount">
+                </v-text-field>
+            </v-btn>
+            <v-btn class="submitButton"
+                rounded 
+                small 
+                @click="getCoordinates()">
+                Run
+            </v-btn>
+        </div>
     </div>  
 </template>
 
@@ -98,8 +100,18 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh
 }
+
+.input-wrap{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+}
+
 
 .randCount{
     margin: 2%;

@@ -1,15 +1,12 @@
 import RandomNumberGen from '../../src/components/RandomNumberGen'
 import vuetify from 'vuetify'
 import Vue from 'vue'
+import { mount } from '@vue/test-utils'
 
-import {
-  mount,
-  createLocalVue
-} from '@vue/test-utils'
 
+//TODO: Test Async behavior in getCoordinates()
 
 describe("FormSubmitter", () => {
-
   beforeEach(() => {
     Vue.use(vuetify);
   })

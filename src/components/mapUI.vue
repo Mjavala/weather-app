@@ -1,5 +1,5 @@
 <template>
-  <div id="map">
+  <div class="map">
      <l-map 
           v-bind="mapConfig"
           style="height: 90%"
@@ -13,14 +13,37 @@
         :lat-lng="latLng(item.data.coord.lat, item.data.coord.lon)"
       >
         <l-popup>
-          <div>
-            {{ item.data.weather[0].main }}
+          <div class="main-desc d-inline-flex">
+            <v-icon 
+              color="blue"
+              small
+              v-if="item.data.weather[0].main === 'Rain'">
+                mdi-weather-pouring
+              </v-icon>
+              <v-icon 
+              color="grey"
+              small
+              v-if="item.data.weather[0].main === 'Clouds'">
+                mdi-weather-cloudy
+              </v-icon>
+              <v-icon 
+              color="yellow"
+              small
+              v-if="item.data.weather[0].main === 'Clear'">
+                mdi-weather-sunny
+              </v-icon>
+              <v-icon 
+              color="white"
+              small
+              v-if="item.data.weather[0].main === 'Snow'">
+                mdi-weather-snowy
+              </v-icon>
+            <div class="mx-1 white--text">
+                {{ item.data.main.temp}} °K
+            </div>
           </div>
-          <div>
+          <div class="white--text">
             {{ item.data.weather[0].description }}
-          </div>
-          <div>
-            {{ item.data.main.temp}} °K
           </div>
         </l-popup>
       </l-marker>
@@ -30,6 +53,8 @@
 </template>
 
 <script>
+//TODO: Test render of markers / popups / prop data
+
 import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet'
 import { latLngBounds, latLng } from "leaflet";
 
@@ -45,41 +70,44 @@ export default {
   data() {
     return {
       mapConfig: {
-        zoom: 1,
+        zoom: 1.5,
         center: L.latLng(0, 0)
       },
       mapRender: {
-        url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        url:'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
         attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       },
-      weatherDesc: []
-    }
-  },
-  watch: {
-    info(newVal){
-      this.weatherDesc = newVal
-      console.log(this.weatherDesc)
     }
   },
   methods: {
     latLng(lat,long){
       return L.latLng(lat,long)
     },
-    weatherDescription(){
-      this.weatherDesc.forEach(element => {
-        return array.map(value => value.prop)
-      });
-      }
-    }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 
-#map{
-  height: 70vh;
-  width: 70vw;
+.map{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
 }
+
+.leaflet-container a.leaflet-popup-close-button{
+  color: #121212;
+  width: 15px;
+  padding: 0;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+  background: #121212;
+}
+
+
 
 </style>
