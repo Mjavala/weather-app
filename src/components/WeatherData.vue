@@ -39,7 +39,7 @@ export default {
             const coordCount = this.lat.length
 
             for (i = 0; i < coordCount; i++){
-                const url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.lat[i]}&lon=${this.long[i]}&APPID=1d3911ed5824c410362a3ce0fb3989bb`
+                const url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat[i]}&lon=${this.long[i]}&APPID=1d3911ed5824c410362a3ce0fb3989bb`
                 this.urls.push(url)
 
             }
