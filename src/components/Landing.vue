@@ -228,7 +228,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
 }
 
 @keyframes fade{
-    0%{
+    0%, 50%{
       opacity: 0;
 }
     100%{
