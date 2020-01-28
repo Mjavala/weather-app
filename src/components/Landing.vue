@@ -145,13 +145,18 @@ import RandomNumberGen from '../components/RandomNumberGen'
             const map = document.querySelector('.map')
             const returns = document.querySelector('.return')
             const location = document.querySelector('.landing-content')
+            map.classList.remove('fadeOut')
             map.classList.add('fadeIn')
+            returns.classList.remove('fadeOut')
             returns.classList.add('fadeIn')
             location.classList.add('fadeOut')
+            location.classList.remove('fadeIn')
             },
         returnToLanding () {
             const map = document.querySelector('.map')
             const location = document.querySelector('.landing-content')
+            const returns = document.querySelector('.return')
+
             map.classList.remove('fadeIn')
             map.classList.add('fadeOut')
             location.classList.remove('fadeOut')
@@ -204,7 +209,6 @@ import RandomNumberGen from '../components/RandomNumberGen'
 .fadeIn{
     animation-name: fade;
     animation-fill-mode: both;
-    animation-iteration-count: 1;
     animation-duration: 1s;
     animation-delay: 1s;
 }
@@ -212,7 +216,6 @@ import RandomNumberGen from '../components/RandomNumberGen'
 .fadeOut{
     animation-name: fadeOut;
     animation-fill-mode: both;
-    animation-iteration-count: 1;
     animation-duration: 1s;
 }
 
