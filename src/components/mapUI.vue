@@ -2,7 +2,8 @@
   <div class="map">
      <l-map 
           v-bind="mapConfig"
-          style="height: 90%"
+          style="height: 1000px"
+
         >
       <l-tile-layer 
         v-bind="mapRender"
@@ -44,7 +45,6 @@
         </l-popup>
       </l-marker>
     </l-map>
-      
   </div>
 </template>
 
@@ -104,6 +104,23 @@ export default {
   background: #121212;
 }
 
+.leaflet-control-zoom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 2%;
+  border: none !important;
+}
+
+.leaflet-control-zoom-in{
+  background: transparent !important;
+  color: #121212 !important;
+}
+
+.leaflet-control-zoom-out{
+  background: transparent !important;
+  color: #121212 !important;
+}
 
 
 </style>

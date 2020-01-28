@@ -1,17 +1,13 @@
 <template>
   <v-app>
-      <RandomNumbers />
+      <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-import RandomNumbers from './components/RandomNumberGen';
 
 
 export default {
   name: 'App',
-  components: {
-    RandomNumbers,
-  },
-};
+}
 </script>

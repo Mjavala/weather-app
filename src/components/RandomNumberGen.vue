@@ -3,24 +3,6 @@
         <WeatherData 
             v-bind="latLong"
         />
-        <div class="input-wrap">
-            <v-btn 
-                rounded 
-                medium 
-                class="randCount"
-            >
-                <v-text-field
-                    label="number of points"
-                    v-model="requestCount">
-                </v-text-field>
-            </v-btn>
-            <v-btn class="submitButton"
-                rounded 
-                small 
-                @click="getCoordinates()">
-                Run
-            </v-btn>
-        </div>
     </div>  
 </template>
 
@@ -37,13 +19,21 @@ export default {
             latLong: {
                 lat: [],
                 long: [],
-            }
-            
-
+            }           
         }
     },
+    props: [
+        'locations',
+        'renderMap'
+    ],
     components: {
         WeatherData,
+    },
+    watch: {
+        locations(newVal){
+            this.requestCount = newVal
+            this.getCoordinates()
+        }
     },
     methods: {
         getCoordinates() {
