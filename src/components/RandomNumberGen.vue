@@ -69,7 +69,7 @@ export default {
 
             this.xCoordinate.forEach(coordinate => {
                 const currentLong = this.rad2deg(coordinate * 2 * Math.PI - Math.PI).toFixed(3)
-                this.latLong.long.push(currentLong)
+                this.lonWithoutBounds.push(currentLong)
             })
 
             this.yCoordinate.forEach(coordinate => {
@@ -81,6 +81,7 @@ export default {
         coordinateBounds() {
             let self = this     //set context
             const arrayLat = self.latWithoutBounds.map(Number)
+            const arrayLon = self.lonWithoutBounds.map(Number)
             const arrayLengthLat = arrayLat.length;
 
             for (var i = 0; i < arrayLengthLat; i++) {
@@ -93,6 +94,18 @@ export default {
                     self.latLong.lat.push(arrayLat[i])
                 } else {
                     self.latLong.lat.push(arrayLat[i])
+                }
+            }
+            for (var i = 0; i < arrayLengthLat; i++) {
+                if(arrayLon[i] > 145) {
+                    arrayLon[i] = arrayLon[i] - 40
+                    self.latLong.long.push(arrayLat[i])
+
+                } else if(arrayLon[i] < -146) {
+                    arrayLon[i] = arrayLon[i] + 40
+                    self.latLong.long.push(arrayLon[i])
+                } else {
+                    self.latLong.long.push(arrayLon[i])
                 }
             }
 
