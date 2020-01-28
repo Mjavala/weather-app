@@ -41,7 +41,11 @@
           </div>
           <div class="mx-1 white--text d-flex justify-center">
                 {{ item.data.main.temp}} °K
-            </div>
+          </div>
+          <div class="mx-1 white--text d-flex justify-center">
+                {{ 'lat:' + item.data.coord.lat}} °
+                {{ 'long' + item.data.coord.lon}} °
+          </div>
         </l-popup>
       </l-marker>
     </l-map>
@@ -66,8 +70,18 @@ export default {
   data() {
     return {
       mapConfig: {
-        zoom: 1.5,
-        center: L.latLng(0, 0)
+        zoom: 2,
+        minZoom: 2,
+        center: L.latLng(0, 0),
+        Bounds: [
+          [-90, -180],
+          [90, 180]
+        ],
+        maxBounds: [
+          [-90, -180],
+          [90, 180]
+        ],
+    
       },
       mapRender: {
         url:'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',

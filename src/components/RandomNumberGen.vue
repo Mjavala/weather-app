@@ -16,6 +16,8 @@ export default {
             xCoordinate: [],
             yCoordinate: [], // [-PI;PI]
             requestCount: null,     //60req/min threshold
+            latWithoutBounds: [],
+            lonWithoutBounds: [],
             latLong: {
                 lat: [],
                 long: [],
@@ -60,7 +62,7 @@ export default {
             
             this.yCoordinate = this.info.slice(mid)
 
-            //convert array elements into lat / long coordinates
+            //convert array elements into lat / long coordinates / conditionals are for points to stay within the map bounds
 
             this.xCoordinate.forEach(coordinate => {
                 const currentLong = this.rad2deg(coordinate * 2 * Math.PI - Math.PI).toFixed(3)
@@ -71,6 +73,20 @@ export default {
                 const currentLat = this.rad2deg(Math.PI/2 - Math.acos(coordinate * 2 - 1)).toFixed(3)
                 this.latLong.lat.push(currentLat)
             })
+        },
+        coordinateBounds() {
+            this.latLong.lat.forEach(function(coordinate,index){
+                if(coordinate > 75){
+                    console.log('this coordinate was above bounds' + coordinate)
+                    this.latLong.lat[index] = coordinate - 10
+                }
+                if(coordinate < 70){
+                    console.log('this coordinate was below bounds' + coordinate)
+                    this.latLong.lat[index] = coordinate + 10
+                }
+            })
+            console.log(this.latLong.long)
+
         },
         resetData(){        //reset coordinate arrays w each user submit
             this.info = []      

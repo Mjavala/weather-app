@@ -4,7 +4,7 @@
     >
     <RandomNumberGen
         v-show="showMap"
-        :locations="locations"
+        :locations="locationsFinal"
     />
     <div class="landing-content">
         <h1 class="mx-auto"> Random Weather </h1>
@@ -109,6 +109,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
   export default {
     data: () => ({
       locations: 0,
+      locationsFinal: null,
       interval: null,
       isPlaying: false,
       showMap: true,
@@ -138,10 +139,8 @@ import RandomNumberGen from '../components/RandomNumberGen'
       increment () {
         this.locations++
       },
-      toggle () {
-        this.isPlaying = !this.isPlaying
-      },
       renderMap () {
+            this.locationsFinal =  this.locations
             const map = document.querySelector('.map')
             const returns = document.querySelector('.return')
             const location = document.querySelector('.landing-content')
@@ -157,7 +156,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
             const map = document.querySelector('.map')
             const location = document.querySelector('.landing-content')
             const returns = document.querySelector('.return')
-            location.style.display = "visible"
+            location.style.display = "flex"
             map.classList.remove('fadeIn')
             map.classList.add('fadeOut')
             location.classList.remove('fadeOut')
