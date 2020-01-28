@@ -2,7 +2,6 @@
   <div class="map">
      <l-map 
           v-bind="mapConfig"
-          style="height: 1000px"
 
         >
       <l-tile-layer 
