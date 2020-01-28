@@ -35,6 +35,9 @@ export default {
         locations(newVal){
             this.requestCount = newVal
             this.getCoordinates()
+        },
+        latWithoutBounds(){
+            this.coordinateBounds()
         }
     },
     methods: {
@@ -71,21 +74,28 @@ export default {
 
             this.yCoordinate.forEach(coordinate => {
                 const currentLat = this.rad2deg(Math.PI/2 - Math.acos(coordinate * 2 - 1)).toFixed(3)
-                this.latLong.lat.push(currentLat)
+                this.latWithoutBounds.push(currentLat)
             })
+            console.log(this.latLong)
         },
         coordinateBounds() {
-            this.latLong.lat.forEach(function(coordinate,index){
-                if(coordinate > 75){
-                    console.log('this coordinate was above bounds' + coordinate)
-                    this.latLong.lat[index] = coordinate - 10
+            let self = this     //set context
+            const arrayLat = self.latWithoutBounds.map(Number)
+            const arrayLengthLat = arrayLat.length;
+
+            for (var i = 0; i < arrayLengthLat; i++) {
+                if(arrayLat[i] > 75) {
+                    arrayLat[i] = arrayLat[i] - 15
+                    self.latLong.lat.push(arrayLat[i])
+
+                } else if(arrayLat[i] < -70) {
+                    arrayLat[i] = arrayLat[i] + 15
+                    self.latLong.lat.push(arrayLat[i])
+                } else {
+                    self.latLong.lat.push(arrayLat[i])
                 }
-                if(coordinate < 70){
-                    console.log('this coordinate was below bounds' + coordinate)
-                    this.latLong.lat[index] = coordinate + 10
-                }
-            })
-            console.log(this.latLong.long)
+            }
+
 
         },
         resetData(){        //reset coordinate arrays w each user submit
@@ -94,6 +104,7 @@ export default {
             this.yCoordinate = []
             this.latLong.lat = []
             this.latLong.long = []
+            this.latWithoutBounds = []
         },
     },
 }
