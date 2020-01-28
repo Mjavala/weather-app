@@ -151,12 +151,13 @@ import RandomNumberGen from '../components/RandomNumberGen'
             returns.classList.add('fadeIn')
             location.classList.add('fadeOut')
             location.classList.remove('fadeIn')
+            location.style.display = "none"
             },
         returnToLanding () {
             const map = document.querySelector('.map')
             const location = document.querySelector('.landing-content')
             const returns = document.querySelector('.return')
-
+            location.style.display = "visible"
             map.classList.remove('fadeIn')
             map.classList.add('fadeOut')
             location.classList.remove('fadeOut')
