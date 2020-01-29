@@ -89,7 +89,7 @@
                 class="mx-2 return-button" 
                 fab 
                 dark 
-                @click="returnToLanding()"
+                @click="renderLanding()"
             >
                 <v-icon dark>mdi-keyboard-return</v-icon>
             </v-btn>
@@ -124,7 +124,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
       increment () {
         this.locations++
       },
-      renderMap () {
+      renderMap () {                                //fade out / in between map and landing page
             this.locationsWrap()
             const map = document.querySelector('.map')
             const returns = document.querySelector('.return')
@@ -137,7 +137,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
             location.classList.remove('fadeIn')
             location.style.display = "none"
             },
-        returnToLanding () {
+        renderLanding () {
             const map = document.querySelector('.map')
             const location = document.querySelector('.landing-content')
             const returns = document.querySelector('.return')

@@ -17,7 +17,7 @@ export default {
             yCoordinate: [],         // [-PI;PI]
             requestCount: null,     //  TODO: 60req/min threshold
             latWithoutBounds: [],
-            lonWithoutBounds: [],
+            longWithoutBounds: [],
             latLong: {
                 lat: [],
                 long: [],
@@ -54,7 +54,7 @@ export default {
                     this.decimaltoCoordinates()
                 })
                 .catch(error => {
-                    console.warn('Could not generate random numbers, error:' + error )
+                    console.warn('Could not generate random numbers, error:' + error )  //TODO: more discriptive error reporting, axios intercepter error handling
                 })
         },
         rad2deg(arg) {
@@ -67,11 +67,11 @@ export default {
             
             this.yCoordinate = this.info.slice(mid)
 
-            //convert array elements into lat / long coordinates / conditionals are for points to stay within the map bounds
+            //convert array of random points into lat & long coordinates 
 
             this.xCoordinate.forEach(coordinate => {
                 const currentLong = this.rad2deg(coordinate * 2 * Math.PI - Math.PI).toFixed(3)
-                this.lonWithoutBounds.push(currentLong)
+                this.longWithoutBounds.push(currentLong)
             })
 
             this.yCoordinate.forEach(coordinate => {
@@ -81,9 +81,9 @@ export default {
             console.log(this.latLong)
         },
         coordinateBounds() {
-            let self = this     //set context
+            let self = this                                     //keep popup + marker within bounds of the map
             const arrayLat = self.latWithoutBounds.map(Number)
-            const arrayLon = self.lonWithoutBounds.map(Number)
+            const arrayLong = self.longWithoutBounds.map(Number)
             const arrayLengthLat = arrayLat.length;
 
             for (let i = 0; i < arrayLengthLat; i++) {
@@ -99,15 +99,15 @@ export default {
                 }
             }
             for (let i = 0; i < arrayLengthLat; i++) {
-                if(arrayLon[i] > 145) {
-                    arrayLon[i] = arrayLon[i] - 40
-                    self.latLong.long.push(arrayLat[i])
+                if(arrayLong[i] > 145) {
+                    arrayLong[i] = arrayLong[i] - 40
+                    self.latLong.long.push(arrayLong[i])
 
-                } else if(arrayLon[i] < -146) {
-                    arrayLon[i] = arrayLon[i] + 40
-                    self.latLong.long.push(arrayLon[i])
+                } else if(arrayLong[i] < -146) {
+                    arrayLong[i] = arrayLong[i] + 40
+                    self.latLong.long.push(arrayLong[i])
                 } else {
-                    self.latLong.long.push(arrayLon[i])
+                    self.latLong.long.push(arrayLong[i])
                 }
             }
 
