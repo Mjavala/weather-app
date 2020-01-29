@@ -15,7 +15,7 @@ export default {
             info: [],
             xCoordinate: [],
             yCoordinate: [], // [-PI;PI]
-            requestCount: null,     //60req/min threshold
+            requestCount: null,     //TODO: 60req/min threshold
             latWithoutBounds: [],
             lonWithoutBounds: [],
             latLong: {

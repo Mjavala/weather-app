@@ -20,6 +20,7 @@ describe("FormSubmitter", () => {
         lat: [1,2,3,4,5],
         long: [6,7,8,9,10],
     })
+    wrapper.vm.$nextTick()
     wrapper.vm.buildGetURLs()
     expect(wrapper.vm.urls.length).toBe(5)
   })
