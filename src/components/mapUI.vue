@@ -77,11 +77,6 @@ export default {
         zoom: 2,
         minZoom: 2,
         center: L.latLng(0, 0),
-      },
-      iconConfig: {
-        'icon-url': pin,
-        'icon-size': [30,30],
-      },
         Bounds: [
           [-90, -180],
           [90, 180]
@@ -90,6 +85,11 @@ export default {
           [-90, -180],
           [90, 180]
         ],
+      },
+      iconConfig: {
+        'icon-url': pin,
+        'icon-size': [30,30],
+      },
       mapRender: {
         url:'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
         attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
