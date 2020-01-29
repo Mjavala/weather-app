@@ -176,7 +176,7 @@ import RandomNumberGen from '../components/RandomNumberGen'
 
 .landing-page{
     align-content: center;
-    height: 100vh;
+    height: 93vh;
 }
 
 .location-prompt{
