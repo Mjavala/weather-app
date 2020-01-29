@@ -1,9 +1,8 @@
 # weather-app
 
 ## Live site
-```
 [I'm an inline-style link](https://cocky-blackwell-8fdee1.netlify.com/)
-```
+
 
 ## TODO
 ```
