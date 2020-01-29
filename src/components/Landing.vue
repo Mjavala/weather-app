@@ -86,11 +86,10 @@
         </div>
         <div class="return">
             <v-btn 
-                class="mx-2" 
+                class="mx-2 return-button" 
                 fab 
                 dark 
                 @click="returnToLanding()"
-                color="#121212"
             >
                 <v-icon dark>mdi-keyboard-return</v-icon>
             </v-btn>
@@ -166,8 +165,19 @@ import RandomNumberGen from '../components/RandomNumberGen'
     opacity: 0;
     position: fixed;
     bottom: 0;
-    left:0;
+    left: 50%;
     padding: 2%;
+    transform: translateX(-50%)
+}
+
+.return-button{
+    opacity: .75;
+}
+
+.return-button:hover{
+    animation: .1s 1 both fadeReturn; 
+    -webkit-animation: .1s 1 both fadeReturn; 
+    -moz-animation: .1s 1 both fadeReturn; 
 }
 
 .generator{
@@ -193,9 +203,9 @@ import RandomNumberGen from '../components/RandomNumberGen'
     position: absolute;
 }
 .weather-icon:nth-child(1) { 
-  animation: 5s alternate-reverse infinite both fade;
-  -webkit-animation: 5s alternate-reverse infinite both fade;
-  -moz-animation: 5s alternate-reverse infinite both fade;
+  animation: 2.5s alternate-reverse infinite both fade;
+  -webkit-animation: 2.5s alternate-reverse infinite both fade;
+  -moz-animation: 2.5s alternate-reverse infinite both fade;
 
 }
 
@@ -214,9 +224,9 @@ import RandomNumberGen from '../components/RandomNumberGen'
 }
 
 .weather-icon:nth-child(2){
-  animation: 5s alternate both infinite fade;
-  -webkit-animation: 5s alternate both infinite fade;
-  -moz-animation: 5s alternate both infinite fade;
+  animation: 2.5s alternate both infinite fade;
+  -webkit-animation: 2.5s alternate both infinite fade;
+  -moz-animation: 2.5s alternate both infinite fade;
 }
 
 @keyframes fade{
@@ -241,6 +251,31 @@ import RandomNumberGen from '../components/RandomNumberGen'
     0%, 50%{
       opacity: 0;
 }
+    100%{
+      opacity: 1;
+  }
+}
+@keyframes fadeReturn{
+    0%, 50%{
+      opacity: 0.75;
+}
+    100%{
+      opacity: 1;
+  }
+}
+@-webkit-keyframes fadeReturn{
+    0%, 50%{
+      opacity: 0.75;
+    }
+    100%{
+      opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeReturn{
+    0%, 50%{
+      opacity: 0.75;
+    }
     100%{
       opacity: 1;
   }

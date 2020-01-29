@@ -14,8 +14,8 @@ export default {
         return {
             info: [],
             xCoordinate: [],
-            yCoordinate: [], // [-PI;PI]
-            requestCount: null,     //TODO: 60req/min threshold
+            yCoordinate: [],         // [-PI;PI]
+            requestCount: null,     //  TODO: 60req/min threshold
             latWithoutBounds: [],
             lonWithoutBounds: [],
             latLong: {
@@ -53,7 +53,9 @@ export default {
 
                     this.decimaltoCoordinates()
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    console.warn('Could not generate random numbers, error:' + error )
+                })
         },
         rad2deg(arg) {
             return (360 * arg / (2 * Math.PI))
@@ -84,7 +86,7 @@ export default {
             const arrayLon = self.lonWithoutBounds.map(Number)
             const arrayLengthLat = arrayLat.length;
 
-            for (var i = 0; i < arrayLengthLat; i++) {
+            for (let i = 0; i < arrayLengthLat; i++) {
                 if(arrayLat[i] > 75) {
                     arrayLat[i] = arrayLat[i] - 15
                     self.latLong.lat.push(arrayLat[i])
@@ -96,7 +98,7 @@ export default {
                     self.latLong.lat.push(arrayLat[i])
                 }
             }
-            for (var i = 0; i < arrayLengthLat; i++) {
+            for (let i = 0; i < arrayLengthLat; i++) {
                 if(arrayLon[i] > 145) {
                     arrayLon[i] = arrayLon[i] - 40
                     self.latLong.long.push(arrayLat[i])
