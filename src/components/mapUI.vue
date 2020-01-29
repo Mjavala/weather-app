@@ -131,6 +131,10 @@ export default {
   right: 0;
 }
 
+.leaflet-marker-icon{
+  opacity: .85;
+}
+
 .leaflet-control-zoom {
   position: fixed;
   right: 0;
