@@ -2,7 +2,6 @@
   <div class="map">
      <l-map 
           v-bind="mapConfig"
-
         >
       <l-tile-layer 
         v-bind="mapRender"
@@ -12,6 +11,10 @@
         v-for="(item) in info"
         :lat-lng="latLng(item.data.coord.lat, item.data.coord.lon)"
       >
+      <l-icon
+        v-bind="iconConfig"
+      >
+      </l-icon>
         <l-popup>
           <div class="main-desc d-inline-flex justify-space-around align-center">
             <v-icon 
@@ -54,8 +57,9 @@
 <script>
 //TODO: Test render of markers / popups / prop data
 
-import {LMap, LTileLayer, LMarker, LPopup} from 'vue2-leaflet'
+import {LMap, LTileLayer, LMarker, LPopup, LIcon} from 'vue2-leaflet'
 import { latLngBounds, latLng } from "leaflet";
+import pin from '../assets/pin.png'
 
 export default {
   name: 'mapUI',
@@ -63,7 +67,8 @@ export default {
     LMap, 
     LTileLayer, 
     LMarker,
-    LPopup
+    LPopup,
+    LIcon,
   },
   props: ['info'],
   data() {
@@ -72,6 +77,11 @@ export default {
         zoom: 2,
         minZoom: 2,
         center: L.latLng(0, 0),
+      },
+      iconConfig: {
+        'icon-url': pin,
+        'icon-size': [30,30],
+      },
         Bounds: [
           [-90, -180],
           [90, 180]
@@ -80,8 +90,6 @@ export default {
           [-90, -180],
           [90, 180]
         ],
-    
-      },
       mapRender: {
         url:'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
         attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
