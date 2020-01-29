@@ -2,7 +2,7 @@
 
 ## Live site
 ```
-https://cocky-blackwell-8fdee1.netlify.com/
+[I'm an inline-style link](https://cocky-blackwell-8fdee1.netlify.com/)
 ```
 
 ## TODO
