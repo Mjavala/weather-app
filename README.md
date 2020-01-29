@@ -1,5 +1,11 @@
 # weather-app
 
+## TODO
+```
+Loader implemented between user input & map rander
+Axios intercepter error handling
+```
+
 ## Project setup
 ```
 yarn install
