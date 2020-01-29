@@ -125,6 +125,12 @@ export default {
   background: #121212;
 }
 
+.leaflet-control-attribution {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
 .leaflet-control-zoom {
   position: fixed;
   right: 0;
